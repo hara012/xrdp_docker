@@ -23,4 +23,8 @@ passwd
 /etc/init.d/xrdp start
 ```
 
-Connect to `IP:6080` from a remote pc using rdp client.
+Connect to `IP:6080` from a remote pc using rdp client as root with the password set above.
+
+Data is shared with host PC in `/share`.
+`su user` when writing to the share directory.
+

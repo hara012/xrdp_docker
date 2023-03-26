@@ -12,3 +12,16 @@ RUN apt install -y xrdp
 RUN apt install -y lxde
 
 RUN cd ~ && echo lxsession -s LXDE -e LXDE > ~/.xsession
+
+# add user
+ARG USERNAME=user
+ARG GROUPNAME=user
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID $GROUPNAME && \
+    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
+
+# set entry point
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
